@@ -11,7 +11,7 @@ import org.junit.runners.Parameterized.Parameters;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class ParameterizedTest {
+public class TestWithParameters {
 
   @Parameters(name = "{0}{1}{2} -> {3}")
   public static Iterable<Object[]> data() {
@@ -33,7 +33,7 @@ public class ParameterizedTest {
   private final int expected;
 
 
-  public ParameterizedTest(String userPermission, String groupPermission, String otherPermission, int expected) {
+  public TestWithParameters(String userPermission, String groupPermission, String otherPermission, int expected) {
     this.userPermission = userPermission;
     this.groupPermission = groupPermission;
     this.otherPermission = otherPermission;

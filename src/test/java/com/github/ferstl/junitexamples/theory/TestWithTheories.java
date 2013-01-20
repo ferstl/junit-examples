@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Theories.class)
-public class UnixFilePermissionsTest {
+public class TestWithTheories {
 
   @DataPoints
   public static final Permission[] dataPoints = Permission.values();
