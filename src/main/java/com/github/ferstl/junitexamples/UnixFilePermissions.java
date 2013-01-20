@@ -2,7 +2,10 @@ package com.github.ferstl.junitexamples;
 
 import java.util.regex.Pattern;
 
-
+/**
+ * Utility class to convert unix file permission strings (like {@code rwxr-xr--}) into their numeric
+ * representation (like {@code 754}).
+ */
 public final class UnixFilePermissions {
 
   private static final Pattern PERMISSION_PATTERN = Pattern.compile("([r-][w-][x-]){3}");
