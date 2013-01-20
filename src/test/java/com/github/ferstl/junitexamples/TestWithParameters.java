@@ -30,21 +30,27 @@ public class TestWithParameters {
   private final String userPermission;
   private final String groupPermission;
   private final String otherPermission;
-  private final int expected;
+  private final int numeric;
 
 
-  public TestWithParameters(String userPermission, String groupPermission, String otherPermission, int expected) {
+  public TestWithParameters(String userPermission, String groupPermission, String otherPermission, int numeric) {
     this.userPermission = userPermission;
     this.groupPermission = groupPermission;
     this.otherPermission = otherPermission;
-    this.expected = expected;
+    this.numeric = numeric;
   }
 
 
   @Test
   public void fromString() {
     int permission = UnixFilePermissions.fromString(this.userPermission + this.groupPermission + this.otherPermission);
-    assertEquals(this.expected, permission);
+    assertEquals(this.numeric, permission);
+  }
+
+  @Test
+  public void fromInt() {
+    String expected = this.userPermission + this.groupPermission + this.otherPermission;
+    assertEquals(expected, UnixFilePermissions.fromInt(this.numeric));
   }
 
 }

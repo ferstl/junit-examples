@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
  */
 public final class UnixFilePermissions {
 
+  private static final char[] CHAR_POSITIONS = { 'r', 'w', 'x' };
+  private static final int VALID_PERMISSION_MASK = 0xFF_FF_FE_00;
   private static final Pattern PERMISSION_PATTERN = Pattern.compile("([r-][w-][x-]){3}");
 
   public static int fromString(String permissionString) {
@@ -28,6 +30,24 @@ public final class UnixFilePermissions {
       }
     }
     return permission;
+  }
+
+  public static String fromInt(int permission) {
+    if ((permission & VALID_PERMISSION_MASK) != 0) {
+      throw new IllegalArgumentException("Invalid permission: " + permission);
+    }
+
+    StringBuilder sb = new StringBuilder();
+    int mask = 0400;
+    for(int i = 0; i < 9; i++) {
+      if ((permission & mask) != 0) {
+        sb.append(CHAR_POSITIONS[i % 3]);
+      } else {
+        sb.append('-');
+      }
+      mask >>= 1;
+    }
+    return sb.toString();
   }
 
   private UnixFilePermissions() {
