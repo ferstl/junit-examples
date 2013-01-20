@@ -17,7 +17,7 @@ public class TestWithRules {
   @Test
   public void testNull() {
     this.exceptionRule.expect(NullPointerException.class);
-    UnixFilePermissions.fromString(null);
+    UnixFilePermissions.numericValue(null);
   }
 
   @Test
@@ -26,6 +26,6 @@ public class TestWithRules {
 
     this.exceptionRule.expect(IllegalArgumentException.class);
     this.exceptionRule.expectMessage(containsString(invalidArgument));
-    UnixFilePermissions.fromString(invalidArgument);
+    UnixFilePermissions.numericValue(invalidArgument);
   }
 }

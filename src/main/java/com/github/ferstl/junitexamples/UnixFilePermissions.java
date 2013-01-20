@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * Utility class to convert unix file permission strings (like {@code rwxr-xr--}) into their numeric
- * representation (like {@code 0754}).
+ * representation (like {@code 0754}) and vice versa.
  */
 public final class UnixFilePermissions {
 
@@ -12,7 +12,13 @@ public final class UnixFilePermissions {
   private static final int VALID_PERMISSION_MASK = 0xFF_FF_FE_00;
   private static final Pattern PERMISSION_PATTERN = Pattern.compile("([r-][w-][x-]){3}");
 
-  public static int fromString(String permissionString) {
+  /**
+   * Transforms a Unix file permission string (e.g. {@code rwxr-xr--}) into its numeric
+   * representation (e.g. {@code 0754}).
+   * @param permissionString Permission string.
+   * @return The numeric representation.
+   */
+  public static int numericValue(String permissionString) {
     if (permissionString == null) {
       throw new NullPointerException("Permission string must not be null");
     }
@@ -32,7 +38,13 @@ public final class UnixFilePermissions {
     return permission;
   }
 
-  public static String fromInt(int permission) {
+  /**
+   * Transforms the numeric representation of a Unix file permission (e.g. {@code 0754}) into its
+   * string representation (e.g. {@code rwxr-xr--}).
+   * @param permission Numeric permission.
+   * @return The string representation.
+   */
+  public static String stringValue(int permission) {
     if ((permission & VALID_PERMISSION_MASK) != 0) {
       throw new IllegalArgumentException("Invalid permission: " + permission);
     }

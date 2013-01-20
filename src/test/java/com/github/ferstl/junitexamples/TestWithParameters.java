@@ -42,15 +42,16 @@ public class TestWithParameters {
 
 
   @Test
-  public void fromString() {
-    int permission = UnixFilePermissions.fromString(this.userPermission + this.groupPermission + this.otherPermission);
+  public void numericValue() {
+    int permission = UnixFilePermissions.numericValue(
+        this.userPermission + this.groupPermission + this.otherPermission);
     assertEquals(this.numeric, permission);
   }
 
   @Test
-  public void fromInt() {
+  public void stringValue() {
     String expected = this.userPermission + this.groupPermission + this.otherPermission;
-    assertEquals(expected, UnixFilePermissions.fromInt(this.numeric));
+    assertEquals(expected, UnixFilePermissions.stringValue(this.numeric));
   }
 
 }
