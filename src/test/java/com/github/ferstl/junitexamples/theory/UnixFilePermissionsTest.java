@@ -1,12 +1,10 @@
 package com.github.ferstl.junitexamples.theory;
 
 import org.junit.Test;
-import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
-
-import com.github.ferstl.junitexamples.theory.UnixFilePermissions;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -14,23 +12,8 @@ import static org.junit.Assert.assertThat;
 @RunWith(Theories.class)
 public class UnixFilePermissionsTest {
 
-  @DataPoint
-  public static final Permission ___ = Permission.create(0, "---");
-  @DataPoint
-  public static final Permission __X = Permission.create(1, "--x");
-  @DataPoint
-  public static final Permission _W_ = Permission.create(2, "-w-");
-  @DataPoint
-  public static final Permission _WX = Permission.create(3, "-wx");
-  @DataPoint
-  public static final Permission R__ = Permission.create(4, "r--");
-  @DataPoint
-  public static final Permission R_X = Permission.create(5, "r-x");
-  @DataPoint
-  public static final Permission RW_ = Permission.create(6, "rw-");
-  @DataPoint
-  public static final Permission RWX = Permission.create(7, "rwx");
-
+  @DataPoints
+  public static final Permission[] dataPoints = Permission.values();
 
   @Theory
   public void fromString(Permission user, Permission group, Permission other) {
@@ -50,13 +33,19 @@ public class UnixFilePermissionsTest {
   }
 
 
-  static class Permission {
+  static enum Permission {
+
+    ___(0, "---"),
+    __X(1, "--x"),
+    _W_(2, "-w-"),
+    _WX(3, "-wx"),
+    R__(4, "r--"),
+    R_X(5, "r-x"),
+    RW_(6, "rw-"),
+    RWX(7, "rwx");
+
     private final int iPermission;
     private final String sPermission;
-
-    public static Permission create(int iPermission, String sPermission) {
-       return new Permission(iPermission, sPermission);
-    }
 
     private Permission(int iPermission, String sPermission) {
       this.iPermission = iPermission;
