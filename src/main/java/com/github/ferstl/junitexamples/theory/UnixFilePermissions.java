@@ -3,7 +3,7 @@ package com.github.ferstl.junitexamples.theory;
 import java.util.regex.Pattern;
 
 
-public class UnixFilePermissions {
+public final class UnixFilePermissions {
 
   private static final Pattern PERMISSION_PATTERN = Pattern.compile("([r-][w-][x-]){3}");
 
@@ -27,5 +27,9 @@ public class UnixFilePermissions {
       permission += group * Math.pow(10, 2 - i / 3);
     }
     return permission;
+  }
+
+  private UnixFilePermissions() {
+    throw new AssertionError("not instantiatable");
   }
 }
