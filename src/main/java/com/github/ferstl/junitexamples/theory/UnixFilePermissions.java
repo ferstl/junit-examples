@@ -12,7 +12,8 @@ public final class UnixFilePermissions {
       throw new NullPointerException("Permission string must not be null");
     }
     if (!PERMISSION_PATTERN.matcher(permissionString).matches()) {
-      throw new IllegalArgumentException("Invalid permission format. Permissions have to match " + PERMISSION_PATTERN);
+      throw new IllegalArgumentException(
+          "Invalid permission string: " + permissionString + ". Must match " + PERMISSION_PATTERN);
     }
 
     int permission = 0;
