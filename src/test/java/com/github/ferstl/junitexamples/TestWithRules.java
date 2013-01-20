@@ -1,8 +1,10 @@
-package com.github.ferstl.junitexamples.theory;
+package com.github.ferstl.junitexamples;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import com.github.ferstl.junitexamples.UnixFilePermissions;
 
 import static org.hamcrest.Matchers.containsString;
 

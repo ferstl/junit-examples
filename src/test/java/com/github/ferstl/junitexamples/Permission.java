@@ -1,4 +1,4 @@
-package com.github.ferstl.junitexamples.theory;
+package com.github.ferstl.junitexamples;
 
 enum Permission {
 

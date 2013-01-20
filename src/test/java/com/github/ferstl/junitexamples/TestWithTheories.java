@@ -1,10 +1,12 @@
-package com.github.ferstl.junitexamples.theory;
+package com.github.ferstl.junitexamples;
 
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
+
+import com.github.ferstl.junitexamples.UnixFilePermissions;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
