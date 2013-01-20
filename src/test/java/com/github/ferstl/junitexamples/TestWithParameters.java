@@ -8,8 +8,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.github.ferstl.junitexamples.UnixFilePermissions;
-
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
@@ -21,7 +19,7 @@ public class TestWithParameters {
     for (Permission user : Permission.values()) {
       for (Permission group : Permission.values()) {
         for (Permission other : Permission.values()) {
-          int expected = 100 * user.iPermission + 10 * group.iPermission + other.iPermission;
+          int expected = 64 * user.iPermission + 8 * group.iPermission + other.iPermission;
           data.add(new Object[] {user.sPermission, group.sPermission, other.sPermission, expected});
         }
       }

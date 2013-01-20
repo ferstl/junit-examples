@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * Utility class to convert unix file permission strings (like {@code rwxr-xr--}) into their numeric
- * representation (like {@code 754}).
+ * representation (like {@code 0754}).
  */
 public final class UnixFilePermissions {
 
@@ -19,16 +19,13 @@ public final class UnixFilePermissions {
           "Invalid permission string: " + permissionString + ". Must match " + PERMISSION_PATTERN);
     }
 
-    int permission = 0;
     char[] chars = permissionString.toCharArray();
-    for (int i = 0; i < chars.length; i += 3) {
-      int group = 0;
-      for (int j = i; j < i + 3; j++) {
-        if (chars[j] != '-') {
-          group |= (1 << (2 - j + i));
-        }
+    int permission = 0;
+    for (int i = 0; i < chars.length; i++) {
+      permission <<= 1;
+      if (chars[i] != '-') {
+        permission |= 1;
       }
-      permission += group * Math.pow(10, 2 - i / 3);
     }
     return permission;
   }

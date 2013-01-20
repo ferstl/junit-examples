@@ -6,8 +6,6 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
-import com.github.ferstl.junitexamples.UnixFilePermissions;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,7 +18,7 @@ public class TestWithTheories {
   @Theory
   public void fromString(Permission user, Permission group, Permission other) {
     String permissionString = user.sPermission + group.sPermission + other.sPermission;
-    int expected = 100 * user.iPermission + 10 * group.iPermission + other.iPermission;
+    int expected = 64 * user.iPermission + 8 * group.iPermission + other.iPermission;
     assertThat(UnixFilePermissions.fromString(permissionString), is(expected));
   }
 
